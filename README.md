@@ -8,7 +8,7 @@
 git clone https://github.com/natsumerinchan/Kernel_Module_Loader.git
 ```
 
-### 2、将内核模块放入kernel_module目录
+### 2、将内核模块(.ko)放入kernel_module目录
 
 ### 3、修改customize.sh
 
