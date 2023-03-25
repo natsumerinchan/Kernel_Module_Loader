@@ -5,7 +5,7 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
   sleep 3
 done
 
-module_list=$(ls $MODULE_DIR)
+module_list=$(ls $MODULE_DIR | grep .ko)
 for module_name in $module_list
 do
   insmod $MODULE_DIR/$module_name
