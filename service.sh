@@ -6,7 +6,8 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
 done
 
 module_list=$(ls $MODULE_DIR | grep .ko)
+test -e $MODDIR/insmod.log || rm $MODDIR/insmod.log
 for module_name in $module_list
 do
-  insmod $MODULE_DIR/$module_name
+  insmod $MODULE_DIR/$module_name >> $MODDIR/insmod.log
 done
