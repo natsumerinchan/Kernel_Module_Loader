@@ -1,7 +1,7 @@
 #!/system/bin/sh
 MODDIR=${0%/*}
 MODULE_DIR=$MODDIR/kernel_module
-while [ "$(getprop sys.boot_completed)" != "1" ] || [ ! -e "$MODULE_DIR" ]; do
+while [ "$(getprop sys.boot_completed)" != "1" ]; do
   sleep 3
 done
 
