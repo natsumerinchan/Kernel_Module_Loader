@@ -25,14 +25,41 @@ else
 fi
 
 # Check Kernel Configs
-ui_print "- Check Kernel Configs..."
-config_list="
+config_dependencylist="
     CONFIG_MODULES
     CONFIG_KPROBES
     CONFIG_HAVE_KPROBES
     CONFIG_KPROBE_EVENTS
 "
-for config_name in $config_list
-do
-  (zcat /proc/config.gz | grep "$config_name=y") || abort "! Your Kernel has not enabled $config_name !"
-done
+
+config_blocklist="
+    CONFIG_LTO
+    CONFIG_THINLTO
+"
+
+check_dependencylist() {
+    ui_print "- Checking Dependencylist Kernel Configs..."
+    for config_name in $config_dependencylist
+    do
+        if [ ! $(zcat /proc/config.gz | grep "$config_name=y") ]; then
+            abort "! Your Kernel has not enabled $config_name !"
+        else
+            ui_print "- $config_name=y"
+        fi
+    done       
+}
+
+check_blocklist() {
+    ui_print "- Checking Blocklist Kernel Configs..."
+    for config_name in $config_blocklist
+    do
+        if [ $(zcat /proc/config.gz | grep "$config_name=y") ]; then
+            abort "! Your Kernel has not disabled $config_name !"
+        else
+            ui_print "- $config_name has been disabled."
+        fi
+    done       
+}
+
+check_dependencylist
+# check_blocklist

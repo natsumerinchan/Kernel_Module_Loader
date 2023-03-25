@@ -25,13 +25,23 @@ case "$kernel_version" in
 esac
 ```
 
-- 要求内核开启某些配置
+- 内核配置依赖项
 ```
-config_list="
+config_dependencylist="
     CONFIG_MODULES
     CONFIG_KPROBES
     CONFIG_HAVE_KPROBES
     CONFIG_KPROBE_EVENTS
+"
+```
+
+- 内核配置黑名单
+
+(注：此功能默认被禁用，如有需求请将`# check_blocklist`取消注释)
+```
+config_blocklist="
+    CONFIG_LTO
+    CONFIG_THINLTO
 "
 ```
 
