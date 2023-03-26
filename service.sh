@@ -9,5 +9,5 @@ module_list=$(ls $MODULE_DIR | grep .ko)
 test -e $MODDIR/insmod.log || rm $MODDIR/insmod.log
 for module_name in $module_list
 do
-  insmod $MODULE_DIR/$module_name >> $MODDIR/insmod.log
+  insmod $MODULE_DIR/$module_name 2>&1 | tee -a $MODDIR/insmod.log
 done
