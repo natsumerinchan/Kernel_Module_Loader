@@ -1,5 +1,5 @@
 # Kernel Module Loader
- 利用Magisk/KernelSU在开机后加载内核模块
+ 利用Magisk/KernelSU/APatch在post-fs-data自动加载内核模块
 
 ## 使用方法
 
